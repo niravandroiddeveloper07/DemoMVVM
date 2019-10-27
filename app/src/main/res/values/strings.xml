@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DemoMvvm</string>
+    <string name="enter_emial">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login">Login</string>
+    <string name="msg_internet">Internet not connected</string>
+    <string name="email_can_not_blank">Email can not blank</string>
+    <string name="password_can_not_blank">Password can not blank</string>
+    <string name="email_should_valid">Email should be valid</string>
+</resources>

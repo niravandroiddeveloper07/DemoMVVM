@@ -24,4 +24,5 @@ class MyApp : Application() {
         lateinit var userDatabase: UserDatabase
         lateinit var pref:SharedPreferences
     }
+
 }

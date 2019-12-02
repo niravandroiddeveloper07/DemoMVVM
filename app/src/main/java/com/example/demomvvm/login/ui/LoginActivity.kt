@@ -11,6 +11,8 @@ import com.example.demomvvm.login.viewmodel.BaseViewModelFactory
 import com.example.demomvvm.login.viewmodel.LoginViewModel
 import com.example.demomvvm.util.Util
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.databinding.DataBindingUtil
+import com.example.demomvvm.databinding.ActivityMainBinding
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -22,29 +24,29 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        val binding : ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+   //     binding.loginviewModel=loginViewModel
+        binding.loginViewModel=loginViewModel
         setData()
+
     }
 
     private fun setData() {
-        btnLogin.setOnClickListener(this)
 
         editEmail.setText("eve.holt@reqres.in")
         editPassword.setText("cityslicka")
 
         loginViewModel.loginResponseLiveData.observe(this, Observer {
-            if (it.data != null) {
+            if (it != null) {
                 startActivity(Intent(this@LoginActivity, UserListActivity::class.java))
-            } else if (it.error != null) {
-
             }
 
         })
-
     }
 
     override fun onClick(p0: View?) {
-        when (p0!!.id) {
+      /*  when (p0!!.id) {
             R.id.btnLogin -> {
                 val msg = isValidDetail()
 
@@ -58,7 +60,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-    }
+    */}
 
     private fun isValidDetail(): String {
 

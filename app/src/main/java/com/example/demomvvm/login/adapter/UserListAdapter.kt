@@ -2,26 +2,24 @@ package com.example.demomvvm.login.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.demomvvm.R
 import com.example.demomvvm.database.User
+import com.example.demomvvm.databinding.ItemUserListBinding
 import kotlinx.android.synthetic.main.item_user_list.view.*
 import java.lang.StringBuilder
 
 class UserListAdapter(private val items : ArrayList<User>, private val context: Context, var myCallback: (Int) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(context).inflate(
-                R.layout.item_user_list,
-                parent,
-                false
-            )
-        )
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ItemUserListBinding.inflate(inflater)
+        return ViewHolder(binding)
+
+
+
     }
 
     override fun getItemCount(): Int {
@@ -42,7 +40,7 @@ class UserListAdapter(private val items : ArrayList<User>, private val context: 
         }
     }
 
-    class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: ItemUserListBinding) : RecyclerView.ViewHolder(view.root) {
     }
 }
 

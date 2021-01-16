@@ -1,4 +1,4 @@
-package com.example.demomvvm.util
+package com.example.demomvvm.utility
 
 const val PERMISSIONS_REQUEST_CODE=100
 const val PREF_IS_LOGIN="is_login"

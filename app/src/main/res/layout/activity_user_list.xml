@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/root"
     android:orientation="vertical"
-    tools:context=".login.ui.UserListActivity">
+    tools:context=".user.UserListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
 

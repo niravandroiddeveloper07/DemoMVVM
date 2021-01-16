@@ -1,4 +1,4 @@
-package com.example.demomvvm.util
+package com.example.demomvvm.utility
 
 import android.app.AlertDialog
 import android.content.Context

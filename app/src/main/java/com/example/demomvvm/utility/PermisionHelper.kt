@@ -1,4 +1,4 @@
-package com.example.demomvvm.util
+package com.example.demomvvm.utility
 
 import android.app.Activity
 import android.content.Context

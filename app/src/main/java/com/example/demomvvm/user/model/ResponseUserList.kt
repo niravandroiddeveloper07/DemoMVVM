@@ -1,5 +1,6 @@
-package com.example.demomvvm.model
+package com.example.demomvvm.user.model
 
+import com.example.demomvvm.database.User
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -14,7 +15,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class LoginResponse (
+data class ResponseUserList (
 
-	@SerializedName("token") val token : String
+	@SerializedName("page") val page : Int,
+	@SerializedName("per_page") val per_page : Int,
+	@SerializedName("total") val total : Int,
+	@SerializedName("total_pages") val total_pages : Int,
+	@SerializedName("data") val data : List<User>
 )

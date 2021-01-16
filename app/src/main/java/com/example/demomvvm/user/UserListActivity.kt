@@ -1,4 +1,4 @@
-package com.example.demomvvm.login.ui
+package com.example.demomvvm.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,23 +6,22 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.demomvvm.MyApplication
 import com.example.demomvvm.R
 import com.example.demomvvm.database.User
-import com.example.demomvvm.login.adapter.UserListAdapter
-import com.example.demomvvm.login.viewmodel.BaseViewModelFactory
-import com.example.demomvvm.login.viewmodel.UserViewModel
-import com.example.demomvvm.util.MyApp
-import com.example.demomvvm.util.Util
+import com.example.demomvvm.login.LoginViewModel
+import com.example.demomvvm.user.adapter.UserListAdapter
+import com.example.demomvvm.utility.Util
 import kotlinx.android.synthetic.main.activity_user_list.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class UserListActivity : AppCompatActivity(),View.OnClickListener {
 
-
-    private val userViewModel: UserViewModel by lazy {
-        ViewModelProviders.of(this, BaseViewModelFactory { UserViewModel(this) }).get(
-            UserViewModel::class.java
-        )
-    }
+    @Inject
+    lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +31,8 @@ class UserListActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun setData() {
+        (application as MyApplication).appComponent.userListComponent().create(this).inject(this)
+
         recycleview.layoutManager =
             LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false);
 
@@ -40,12 +41,21 @@ class UserListActivity : AppCompatActivity(),View.OnClickListener {
         else
             Util.showSnackBar(root, getString(R.string.msg_internet))
 
-        MyApp.userDao.getUserList().observe(this, Observer {
+        userViewModel.userListLiveData.observe(this, Observer {
 
-            recycleview.adapter= UserListAdapter(it as ArrayList<User>, this, myCallback = {
+            CoroutineScope(Dispatchers.IO).launch {
 
-            })
+                for (user in it.data) {
+                    MyApplication.userDao.insert(user = user)
+                }
+            }
+            recycleview.adapter =
+                UserListAdapter(it.data as ArrayList<User>, this@UserListActivity, myCallback = {
+
+                })
+
         })
+
 
     }
 

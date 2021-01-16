@@ -1,21 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout
+<LinearLayout android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-
-        <variable
-            name="loginViewModel"
-            type="com.example.demomvvm.login.viewmodel.LoginViewModel" />
-
-    </data>
-
-    <LinearLayout
-        android:id="@+id/root"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/editEmail"
@@ -36,12 +24,8 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
-            android:onClick="@{() -> loginViewModel.callLoginApi(editEmail.getText().toString(),editPassword.getText().toString())}"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/login" />
     </LinearLayout>
-
-</layout>

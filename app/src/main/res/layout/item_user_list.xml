@@ -1,19 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-        <variable
-            name="loginviewModel"
-            type="com.example.demomvvm.login.viewmodel.LoginViewModel" />
-
-    </data>
-
 <androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    layout_height=""
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -56,4 +47,3 @@
             android:layout_centerVertical="true" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
-</layout>
